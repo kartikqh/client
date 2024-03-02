@@ -45,8 +45,11 @@ const EmployeeTable = () => {
   return (
     <div className="container mt-4">
       <div className="card">
-        <div className="card-header bg-primary text-white">
-          <h2 className="mb-0">Employee List</h2>
+        <div className="card-header bg-primary text-white row">
+          <h2 className="mb-0 col-md-10">Employee List</h2>
+          <Link to={`/create`} className="btn btn-success col-md-2">
+              Add Employee
+            </Link>
         </div>
         <div className="card-body">
           <div className="row mb-3">

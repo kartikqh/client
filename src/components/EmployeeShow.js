@@ -37,6 +37,7 @@ const EmployeeShow = () => {
           <h3 className="card-title">{employee.firstName}'s Details</h3>
         </div>
         <div className="card-body">
+        <Link to="/" className="btn btn-secondary mb-3">Employee List</Link>
           <dl className="row">
             <dt className="col-sm-3">First Name:</dt>
             <dd className="col-sm-9">{employee.firstName}</dd>
