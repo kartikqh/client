@@ -33,11 +33,11 @@ const EmployeeShow = () => {
   return (
     <div className="container mt-4">
       <div className="card">
-        <div className="card-header">
-          <h3 className="card-title">{employee.firstName}'s Details</h3>
+        <div className="card-header bg-dark">
+          <h3 className="card-title" style={{color: 'whitesmoke'}}>{employee.firstName}'s Details</h3>
         </div>
         <div className="card-body">
-        <Link to="/" className="btn btn-secondary mb-3">Employee List</Link>
+        
           <dl className="row">
             <dt className="col-sm-3">First Name:</dt>
             <dd className="col-sm-9">{employee.firstName}</dd>
@@ -60,7 +60,7 @@ const EmployeeShow = () => {
             <Link to={`/edit/${employeeId}`} className="btn btn-success mr-2">
               Edit
             </Link>
-            <button onClick={() => handleDelete(employeeId)} className="btn btn-danger">
+            <button onClick={() => handleDelete(employeeId)} className="btn btn-danger" style={{marginLeft:"20px"}}>
               Delete
             </button>
           </div>

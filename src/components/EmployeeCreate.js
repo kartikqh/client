@@ -59,11 +59,11 @@ const EmployeeCreate = () => {
     return (
         <div className="container">
             <div className="card mt-4">
-                <div className="card-header bg-primary text-white">
+                <div className="card-header bg-dark text-white">
                     <h3 className="mb-0">Add Employee</h3>
                 </div>
                 <div className="card-body">
-                    <Link to="/" className="btn btn-secondary mb-3">Employee List</Link>
+                    
                     {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">

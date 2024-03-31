@@ -9,6 +9,7 @@ import EmployeeCreate from '../src/components/EmployeeCreate'
 import EmployeeList from './components/EmployeeTable';
 import EmployeeShow from './components/EmployeeShow';
 import EmployeeEdit from './components/EmployeeEdit';
+import Navbar from './components/Navbar';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql', // Your GraphQL server endpoint
@@ -19,6 +20,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Router>
+      <Navbar />
         <Routes>
           <Route path='/' element={<EmployeeList />} />
           <Route path='/create' element={<EmployeeCreate />} />

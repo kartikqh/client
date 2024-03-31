@@ -45,11 +45,8 @@ const EmployeeTable = () => {
   return (
     <div className="container mt-4">
       <div className="card">
-        <div className="card-header bg-primary text-white row">
+        <div className="card-header bg-dark text-white row">
           <h2 className="mb-0 col-md-10">Employee List</h2>
-          <Link to={`/create`} className="btn btn-success col-md-2">
-              Add Employee
-            </Link>
         </div>
         <div className="card-body">
           <div className="row mb-3">
@@ -121,7 +118,7 @@ const EmployeeTable = () => {
                 {filteredEmployees.map((employee) => (
                   <tr key={employee.id}>
                     <td>
-                      <Link to={`/show/${employee.id}`}>{employee.firstName}</Link>
+                      {employee.firstName}
                     </td>
                     <td>{employee.lastName}</td>
                     <td>{employee.age}</td>
@@ -134,6 +131,10 @@ const EmployeeTable = () => {
                       <Link to={`/edit/${employee.id}`} className="btn btn-primary btn-sm">
                         Edit
                       </Link>
+
+                      <Link to={`/show/${employee.id}`} className="btn btn-success btn-sm" style={{marginLeft: "20px"}}>
+                        View
+                      </Link> 
                     </td>
                   </tr>
                 ))}

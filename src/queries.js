@@ -82,7 +82,8 @@ mutation updateEmployee(
     $dateOfJoining: String!,
     $title: String!,
     $department: String!,
-    $employeeType: String!) {
+    $employeeType: String!
+    $currentStatus: Boolean!) {
     updateEmployee(
     id: $id,
     firstName: $firstName,
@@ -91,7 +92,8 @@ mutation updateEmployee(
     dateOfJoining: $dateOfJoining,
     title: $title,
     department: $department,
-    employeeType: $employeeType) {
+    employeeType: $employeeType,
+    currentStatus: $currentStatus) {
       id
       firstName
       lastName

@@ -13,7 +13,7 @@ const EmployeeEdit = () => {
   const [title, setTitle] = useState('');
   const [department, setDepartment] = useState('');
   const [employeeType, setEmployeeType] = useState('');
-  const [currentStatus, setCurrentStatus] = useState('');
+  const [currentStatus, setCurrentStatus] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
   const { loading, error, data } = useQuery(GET_EMPLOYEE, {
@@ -30,7 +30,7 @@ const EmployeeEdit = () => {
       setTitle(employee.title || '');
       setDepartment(employee.department || '');
       setEmployeeType(employee.employeeType || '');
-      setCurrentStatus(employee.currentStatus || '');
+      setCurrentStatus(employee.currentStatus);
     }
   }, [data]);
 
@@ -60,7 +60,7 @@ const EmployeeEdit = () => {
           title,
           department,
           employeeType,
-          currentStatus: !!currentStatus // Convert to boolean
+          currentStatus: currentStatus // Convert to boolean
         }
       });
       // Reset form fields
@@ -83,29 +83,40 @@ const EmployeeEdit = () => {
   return (
     <div className="container">
             <div className="card mt-4">
-                <div className="card-header bg-primary text-white">
+                <div className="card-header bg-dark text-white">
                     <h3 className="mb-0">Edit Employee</h3>
                 </div>
                 <div className="card-body">
-                    <Link to="/" className="btn btn-secondary mb-3">Employee List</Link>
+                    
                     {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="firstName">First Name:</label>
-                            <input type="text" className="form-control" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <input type="text" className="form-control" id="firstName" value={firstName}  disabled onChange={(e) => setFirstName(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastName">Last Name:</label>
-                            <input type="text" className="form-control" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                            <input type="text" className="form-control" id="lastName" value={lastName} disabled onChange={(e) => setLastName(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="age">Age:</label>
-                            <input type="number" className="form-control" id="age" value={age} onChange={(e) => setAge(e.target.value)} />
+                            <input type="number" className="form-control" id="age" value={age} disabled onChange={(e) => setAge(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="dateOfJoining">Date of Joining:</label>
-                            <input type="date" className="form-control" id="dateOfJoining" value={(dateOfJoining.split('T')[0])} onChange={(e) => setDateOfJoining(e.target.value)} />
+                            <input type="date" className="form-control" id="dateOfJoining" disabled value={(dateOfJoining.split('T')[0])} onChange={(e) => setDateOfJoining(e.target.value)} />
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="employeeType">Employee Type:</label>
+                            <select className="form-control" id="employeeType" value={employeeType}  disabled onChange={(e) => setEmployeeType(e.target.value)}>
+                                <option value="">Select Employee Type</option>
+                                <option value="FullTime">Full-Time</option>
+                                <option value="PartTime">Part-Time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Seasonal">Seasonal</option>
+                            </select>
+                        </div>
+                        <br></br>
                         <div className="form-group">
                             <label htmlFor="title">Title:</label>
                             <select className="form-control" id="title" value={title} onChange={(e) => setTitle(e.target.value)}>
@@ -116,6 +127,7 @@ const EmployeeEdit = () => {
                                 <option value="VP">VP</option>
                             </select>
                         </div>
+                        <br></br>
                         <div className="form-group">
                             <label htmlFor="department">Department:</label>
                             <select className="form-control" id="department" value={department} onChange={(e) => setDepartment(e.target.value)}>
@@ -126,17 +138,19 @@ const EmployeeEdit = () => {
                                 <option value="Engineering">Engineering</option>
                             </select>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="employeeType">Employee Type:</label>
-                            <select className="form-control" id="employeeType" value={employeeType} onChange={(e) => setEmployeeType(e.target.value)}>
-                                <option value="">Select Employee Type</option>
-                                <option value="FullTime">Full-Time</option>
-                                <option value="PartTime">Part-Time</option>
-                                <option value="Contract">Contract</option>
-                                <option value="Seasonal">Seasonal</option>
-                            </select>
-                        </div>
+                        <br></br>
                         
+                        <div className="form-group">
+                          <label>Current Status:</label><br />
+                          <label style={{marginLeft: "10px"}}>
+                            <input type="radio" value="Active" checked={currentStatus === true} onChange={() => setCurrentStatus(true)} />
+                            Active
+                          </label>
+                          <label style={{marginLeft: "10px"}}>
+                            <input type="radio" value="Inactive" checked={currentStatus === false} onChange={() => setCurrentStatus(false)} />
+                            Inactive
+                          </label>
+                        </div>
                         <button type="submit" className="btn btn-success m-3">Submit</button>
                         {loading && <p>Loading...</p>}
                     </form>
